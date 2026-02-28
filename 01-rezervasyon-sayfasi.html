@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rezervasyon — Raks-ı Derya</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #05111F;
+  --deep: #020A14;
+  --mid: #0D2540;
+  --gold: #C9963E;
+  --gold2: #E8C87A;
+  --gold3: #F5DFA0;
+  --teal: #4BA8C5;
+  --white: #F5EFE6;
+  --text2: rgba(245,239,230,0.55);
+  --border: rgba(201,150,62,0.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding:40px 20px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(13,37,64,0.9) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 20% 20%, rgba(75,168,197,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 30%, rgba(201,150,62,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #020A14 0%, #041525 50%, #071E35 100%);
+}
+/* Animated waves */
+.waves{position:absolute;bottom:0;left:0;right:0;height:200px;overflow:hidden}
+.wave{position:absolute;bottom:0;left:-50%;width:200%;height:100px;border-radius:50%;animation:waveAnim 8s ease-in-out infinite}
+.wave:nth-child(1){background:rgba(75,168,197,0.04);animation-duration:8s}
+.wave:nth-child(2){background:rgba(75,168,197,0.03);animation-duration:12s;animation-delay:-4s;height:80px}
+.wave:nth-child(3){background:rgba(201,150,62,0.02);animation-duration:16s;animation-delay:-8s;height:60px}
+@keyframes waveAnim{0%,100%{transform:translateX(0) scaleY(1)}50%{transform:translateX(-5%) scaleY(1.1)}}
+
+/* Stars */
+.stars{position:absolute;inset:0;overflow:hidden}
+.star{position:absolute;border-radius:50%;background:white;animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:.2;transform:scale(.8)}}
+
+.hero-content{position:relative;z-index:2;text-align:center;max-width:700px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(201,150,62,0.1);border:1px solid rgba(201,150,62,0.3);
+  padding:6px 16px;border-radius:20px;font-size:11px;letter-spacing:3px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:28px;
+  animation:fadeUp .8s ease both;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(48px,8vw,96px);
+  font-weight:300;line-height:1;margin-bottom:8px;
+  animation:fadeUp .8s .15s ease both;
+}
+.hero-title em{font-style:italic;color:var(--gold2);display:block}
+.hero-sub{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;
+  color:var(--teal);text-transform:uppercase;margin-bottom:20px;
+  animation:fadeUp .8s .25s ease both;
+}
+.hero-desc{
+  font-size:15px;line-height:1.8;color:var(--text2);max-width:500px;margin:0 auto 40px;
+  animation:fadeUp .8s .35s ease both;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--gold),#A87830);
+  color:#05111F;padding:16px 36px;border-radius:10px;
+  font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;
+  font-weight:600;text-decoration:none;cursor:pointer;border:none;
+  transition:.3s cubic-bezier(.2,.8,.2,1);
+  animation:fadeUp .8s .45s ease both;
+  box-shadow:0 8px 32px rgba(201,150,62,0.25);
+}
+.hero-cta:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(201,150,62,0.4)}
+.scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  font-size:10px;letter-spacing:2px;color:rgba(245,239,230,0.3);text-transform:uppercase;
+  animation:fadeUp .8s .6s ease both;
+}
+.scroll-hint::after{
+  content:'';width:1px;height:32px;
+  background:linear-gradient(to bottom,rgba(201,150,62,0.4),transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.8;transform:scaleY(1.2)}}
+
+/* ── FORM SECTION ── */
+.form-section{
+  max-width:760px;margin:0 auto;padding:80px 24px 120px;
+}
+.form-intro{text-align:center;margin-bottom:60px}
+.section-eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--teal);text-transform:uppercase;margin-bottom:10px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);font-weight:300;color:var(--white)}
+.section-title em{font-style:italic;color:var(--gold2)}
+
+/* Tur tipi seçici */
+.tur-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:40px}
+.tur-card{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px;padding:22px 16px;text-align:center;cursor:pointer;
+  transition:.3s;position:relative;overflow:hidden;
+}
+.tur-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(201,150,62,0.08),transparent);
+  opacity:0;transition:.3s;
+}
+.tur-card:hover,.tur-card.selected{border-color:rgba(201,150,62,0.4);background:rgba(201,150,62,0.06)}
+.tur-card:hover::before,.tur-card.selected::before{opacity:1}
+.tur-card.selected{box-shadow:0 0 0 1px rgba(201,150,62,0.3),0 8px 32px rgba(201,150,62,0.1)}
+.tur-icon{font-size:28px;margin-bottom:10px}
+.tur-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--white);margin-bottom:4px}
+.tur-desc{font-size:11px;color:var(--text2)}
+.tur-badge{
+  position:absolute;top:10px;right:10px;
+  background:var(--gold);color:#05111F;font-size:9px;font-weight:600;
+  letter-spacing:1px;padding:2px 8px;border-radius:4px;
+}
+
+/* Form */
+.form-card{
+  background:rgba(255,255,255,0.025);border:1px solid var(--border);
+  border-radius:20px;padding:40px;position:relative;overflow:hidden;
+}
+.form-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--gold2),var(--gold),transparent);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-row.full{grid-template-columns:1fr}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-label{font-size:11px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;font-weight:500}
+.form-input,.form-select,.form-textarea{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;padding:13px 16px;color:var(--white);font-family:'DM Sans',sans-serif;
+  font-size:14px;outline:none;transition:.3s;width:100%;
+  -webkit-appearance:none;
+}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(245,239,230,0.25)}
+.form-input:focus,.form-select:focus,.form-textarea:focus{
+  border-color:rgba(201,150,62,0.5);background:rgba(201,150,62,0.04);
+  box-shadow:0 0 0 3px rgba(201,150,62,0.08);
+}
+.form-select{cursor:pointer}
+.form-select option{background:#05111F;color:var(--white)}
+.form-textarea{resize:vertical;min-height:100px;line-height:1.6}
+.form-divider{
+  display:flex;align-items:center;gap:16px;margin:28px 0;
+}
+.form-divider-line{flex:1;height:1px;background:var(--border)}
+.form-divider-text{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--gold);opacity:0.7}
+
+.kisi-counter{
+  display:flex;align-items:center;gap:0;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;overflow:hidden;
+}
+.kisi-btn{
+  width:44px;height:48px;background:transparent;border:none;color:var(--gold);
+  font-size:20px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;
+}
+.kisi-btn:hover{background:rgba(201,150,62,0.1)}
+.kisi-val{flex:1;text-align:center;font-size:16px;font-weight:500;color:var(--white)}
+
+/* Paket fiyat göstergesi */
+.price-preview{
+  background:rgba(201,150,62,0.06);border:1px solid rgba(201,150,62,0.2);
+  border-radius:12px;padding:20px 24px;margin:24px 0;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.price-label{font-size:12px;color:var(--text2)}
+.price-value{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);font-weight:600}
+.price-note{font-size:11px;color:var(--text2);margin-top:2px}
+
+.submit-btn{
+  width:100%;padding:18px;
+  background:linear-gradient(135deg,var(--gold),#A87830);
+  color:#05111F;border:none;border-radius:12px;
+  font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;font-weight:600;
+  cursor:pointer;transition:.3s;margin-top:8px;
+  box-shadow:0 8px 32px rgba(201,150,62,0.2);
+}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 16px 48px rgba(201,150,62,0.35)}
+.submit-btn:active{transform:translateY(0)}
+
+/* Success state */
+.success-overlay{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(2,10,20,0.95);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding:40px;
+}
+.success-overlay.show{display:flex}
+.success-icon{font-size:64px;margin-bottom:20px;animation:popIn .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes popIn{from{transform:scale(0) rotate(-10deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.success-title{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--white);margin-bottom:8px}
+.success-title em{font-style:italic;color:var(--gold2)}
+.success-text{font-size:15px;color:var(--text2);max-width:400px;line-height:1.7;margin-bottom:32px}
+.success-btn{
+  background:transparent;border:1px solid rgba(201,150,62,0.4);color:var(--gold);
+  padding:12px 32px;border-radius:8px;font-family:'Cinzel',serif;font-size:11px;
+  letter-spacing:2px;cursor:pointer;transition:.3s;
+}
+.success-btn:hover{background:rgba(201,150,62,0.1)}
+
+/* ── GÜVENCELER ── */
+.trust-bar{
+  border-top:1px solid var(--border);padding:50px 24px;
+  display:flex;gap:40px;justify-content:center;flex-wrap:wrap;
+  background:rgba(255,255,255,0.01);
+}
+.trust-item{display:flex;align-items:center;gap:12px;max-width:200px}
+.trust-icon{font-size:24px;flex-shrink:0}
+.trust-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:2px}
+.trust-text{font-size:11px;color:var(--text2);line-height:1.4}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+  .tur-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .form-card{padding:24px 20px}
+  .trust-bar{gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="stars" id="stars"></div>
+  <div class="waves">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">⚓ İstanbul Boğazı'nda</div>
+    <h1 class="hero-title">
+      Raks-ı<br><em>Derya</em>
+    </h1>
+    <p class="hero-sub">Gezi Teknesi · Rezervasyon</p>
+    <p class="hero-desc">
+      Boğaz'ın eşsiz manzarasında özel gezi, düğün, nişan ve kurumsal organizasyonlar için yerinizi ayırtın.
+    </p>
+    <button class="hero-cta" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">
+      ✦ Hemen Rezervasyon Yap
+    </button>
+  </div>
+  <div class="scroll-hint">Aşağı kaydır</div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="form-section">
+  <div class="form-intro">
+    <div class="section-eyebrow">Online Rezervasyon</div>
+    <h2 class="section-title">Yerinizi <em>Ayırtın</em></h2>
+  </div>
+
+  <!-- Tur tipi -->
+  <div class="tur-grid" id="turGrid">
+    <div class="tur-card selected" onclick="selectTur(this,'Gezi Turu')">
+      <div class="tur-icon">🌊</div>
+      <div class="tur-name">Gezi Turu</div>
+      <div class="tur-desc">Boğaz'da özel veya grup turu</div>
+    </div>
+    <div class="tur-card" onclick="selectTur(this,'Düğün & Nişan')">
+      <div class="tur-badge">Popüler</div>
+      <div class="tur-icon">💍</div>
+      <div class="tur-name">Düğün & Nişan</div>
+      <div class="tur-desc">Unutulmaz bir kutlama</div>
+    </div>
+    <div class="tur-card" onclick="selectTur(this,'Kurumsal')">
+      <div class="tur-icon">🏢</div>
+      <div class="tur-name">Kurumsal</div>
+      <div class="tur-desc">Toplantı & etkinlik organizasyonu</div>
+    </div>
+    <div class="tur-card" onclick="selectTur(this,'Doğum Günü')">
+      <div class="tur-icon">🎂</div>
+      <div class="tur-name">Doğum Günü</div>
+      <div class="tur-desc">Özel gün kutlaması</div>
+    </div>
+    <div class="tur-card" onclick="selectTur(this,'Yıldönümü')">
+      <div class="tur-icon">💫</div>
+      <div class="tur-name">Yıldönümü</div>
+      <div class="tur-desc">Romantik kutlama</div>
+    </div>
+    <div class="tur-card" onclick="selectTur(this,'Özel')">
+      <div class="tur-icon">⚓</div>
+      <div class="tur-name">Özel Tur</div>
+      <div class="tur-desc">Tamamen size özel</div>
+    </div>
+  </div>
+
+  <!-- Form kartı -->
+  <div class="form-card">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Ad Soyad</label>
+        <input class="form-input" type="text" placeholder="Adınız ve soyadınız" id="f-ad">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Telefon</label>
+        <input class="form-input" type="tel" placeholder="05XX XXX XX XX" id="f-tel">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">E-posta</label>
+        <input class="form-input" type="email" placeholder="ornek@email.com" id="f-email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tarih</label>
+        <input class="form-input" type="date" id="f-tarih">
+      </div>
+    </div>
+
+    <div class="form-divider">
+      <div class="form-divider-line"></div>
+      <div class="form-divider-text">Tur Detayları</div>
+      <div class="form-divider-line"></div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Zaman</label>
+        <select class="form-select" id="f-zaman">
+          <option value="">Tercih seçin</option>
+          <option>Sabah (09:00 – 12:00)</option>
+          <option>Öğleden Sonra (13:00 – 16:00)</option>
+          <option>Gün Batımı (17:00 – 20:00)</option>
+          <option>Gece (20:00 – 23:00)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Süre</label>
+        <select class="form-select" id="f-sure">
+          <option value="">Süre seçin</option>
+          <option>2 Saat</option>
+          <option>3 Saat</option>
+          <option>4 Saat</option>
+          <option>Tam Gün</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-bottom:16px">
+      <label class="form-label">Kişi Sayısı</label>
+      <div class="kisi-counter">
+        <button class="kisi-btn" onclick="changeKisi(-1)">−</button>
+        <span class="kisi-val" id="kisiVal">10</span>
+        <button class="kisi-btn" onclick="changeKisi(1)">+</button>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Yemek / İkram</label>
+        <select class="form-select" id="f-yemek">
+          <option value="">Seçin</option>
+          <option>Yok</option>
+          <option>Hafif Atıştırmalık</option>
+          <option>Kokteyl Menüsü</option>
+          <option>Tam Yemek Menüsü</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Kalkış Noktası</label>
+        <select class="form-select" id="f-kalkis">
+          <option value="">Seçin</option>
+          <option>Beşiktaş İskelesi</option>
+          <option>Kabataş İskelesi</option>
+          <option>Üsküdar İskelesi</option>
+          <option>Bebek İskelesi</option>
+          <option>Diğer</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label class="form-label">Özel İstekler & Notlar</label>
+        <textarea class="form-textarea" placeholder="Doğum günü süslemesi, fotoğrafçı, müzik tercihi, engelli misafir vs..." id="f-not"></textarea>
+      </div>
+    </div>
+
+    <!-- Fiyat önizleme -->
+    <div class="price-preview" id="pricePreview">
+      <div>
+        <div class="price-label">Fiyat Bilgisi</div>
+        <div class="price-note">Kişiye özel fiyatlandırma yapılmaktadır</div>
+      </div>
+      <div style="text-align:right">
+        <div class="price-value" id="priceVal">—</div>
+        <div class="price-note" id="priceNote">Tur tipi ve kişi sayısını seçin</div>
+      </div>
+    </div>
+
+    <button class="submit-btn" onclick="submitForm()">✦ REZERVASYON TALEBİ GÖNDER ✦</button>
+    <p style="text-align:center;font-size:11px;color:var(--text2);margin-top:12px">
+      Talebiniz alındıktan sonra 2 saat içinde sizi arayarak detayları netleştireceğiz.
+    </p>
+  </div>
+</section>
+
+<!-- GÜVENCELER -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="trust-icon">⚡</div>
+    <div>
+      <div class="trust-title">Hızlı Yanıt</div>
+      <div class="trust-text">2 saat içinde dönüş garantisi</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">🔒</div>
+    <div>
+      <div class="trust-title">Güvenli Ödeme</div>
+      <div class="trust-text">%50 kapora, geri kalanı gün içinde</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">🌊</div>
+    <div>
+      <div class="trust-title">Deneyimli Ekip</div>
+      <div class="trust-text">10+ yıl Boğaz tecrübesi</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">❌</div>
+    <div>
+      <div class="trust-title">Ücretsiz İptal</div>
+      <div class="trust-text">48 saat öncesine kadar iade</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-icon">⚓</div>
+  <h2 class="success-title">Talebiniz<br><em>Alındı!</em></h2>
+  <p class="success-text">
+    Rezervasyon talebinizi aldık. Ekibimiz en kısa sürede sizinle iletişime geçecek. Raks-ı Derya'yı tercih ettiğiniz için teşekkürler!
+  </p>
+  <button class="success-btn" onclick="document.getElementById('successOverlay').classList.remove('show')">Geri Dön</button>
+</div>
+
+<script>
+// Yıldızlar
+const starsEl = document.getElementById('stars');
+for(let i=0;i<60;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  const size=Math.random()*2+0.5;
+  s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*60}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s`;
+  starsEl.appendChild(s);
+}
+
+// Set today as min date
+document.getElementById('f-tarih').min = new Date().toISOString().split('T')[0];
+
+let kisi=10, turSecili='Gezi Turu';
+const fiyatTablosu={'Gezi Turu':150,'Düğün & Nişan':350,'Kurumsal':250,'Doğum Günü':200,'Yıldönümü':220,'Özel':300};
+
+function selectTur(el,name){
+  document.querySelectorAll('.tur-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  turSecili=name;
+  updatePrice();
+}
+
+function changeKisi(d){
+  kisi=Math.max(2,Math.min(150,kisi+d));
+  document.getElementById('kisiVal').textContent=kisi;
+  updatePrice();
+}
+
+function updatePrice(){ return; /*
+  const birimFiyat=fiyatTablosu[turSecili]||150;
+  const tahmini=birimFiyat*kisi;
+  const kapora=Math.round(tahmini*0.3/100)*100;
+  document.getElementById('priceVal').textContent='Teklif alın'+kapora.toLocaleString('tr-TR');
+  document.getElementById('priceNote').textContent=`${kisi} kişi · %30 kapora · Toplam ~Teklif alın${tahmini.toLocaleString('tr-TR')}`;
+}
+
+function submitForm(){
+  const ad=document.getElementById('f-ad').value.trim();
+  const tel=document.getElementById('f-tel').value.trim();
+  const tarih=document.getElementById('f-tarih').value;
+  if(!ad){alert('Lütfen adınızı girin.');return;}
+  if(!tel){alert('Lütfen telefon numaranızı girin.');return;}
+  if(!tarih){alert('Lütfen tarih seçin.');return;}
+  document.getElementById('successOverlay').classList.add('show');
+}
+
+// updatePrice gizlendi
+</script>
+</body>
+</html>

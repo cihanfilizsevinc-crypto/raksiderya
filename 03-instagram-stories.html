@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Story Şablonları — Raks-ı Derya</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#030D17;color:#F5EFE6;font-family:'DM Sans',sans-serif;padding:40px 20px}
+.page-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;color:#4BA8C5;text-align:center;text-transform:uppercase;margin-bottom:8px}
+.page-h1{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;text-align:center;margin-bottom:8px}
+.page-h1 em{font-style:italic;color:#E8C87A}
+.page-note{text-align:center;font-size:13px;color:rgba(245,239,230,.5);margin-bottom:48px;line-height:1.6}
+
+.stories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;max-width:1200px;margin:0 auto}
+.story-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+.story-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:#C9963E;text-transform:uppercase}
+
+/* Story frame: 9:16 ratio */
+.story{
+  width:300px;height:533px;border-radius:20px;overflow:hidden;position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);flex-shrink:0;
+}
+
+/* Story 1: Gezi Turu Duyurusu */
+.s1{background:linear-gradient(180deg,#02080F 0%,#041525 50%,#071E35 100%)}
+.s1-stars{position:absolute;inset:0}
+.s1-content{position:absolute;inset:0;padding:40px 28px;display:flex;flex-direction:column}
+.s1-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:auto}
+.story-logo{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:#C9963E}
+.s1-center{text-align:center;margin:auto 0}
+.s1-date-badge{
+  display:inline-block;background:rgba(201,150,62,.15);border:1px solid rgba(201,150,62,.4);
+  padding:6px 16px;border-radius:4px;font-family:'Cinzel',serif;font-size:9px;
+  letter-spacing:3px;color:#C9963E;text-transform:uppercase;margin-bottom:16px;
+}
+.s1-big{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;line-height:.95;margin-bottom:12px}
+.s1-big em{font-style:italic;color:#E8C87A;display:block}
+.s1-sub{font-size:11px;letter-spacing:2px;color:rgba(245,239,230,.5);text-transform:uppercase}
+.s1-bottom{margin-top:auto}
+.s1-cta{
+  display:block;text-align:center;background:linear-gradient(135deg,#C9963E,#8B6020);
+  color:#05111F;padding:14px;border-radius:10px;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;font-weight:600;
+}
+.s1-swipe{text-align:center;font-size:10px;letter-spacing:2px;color:rgba(245,239,230,.3);text-transform:uppercase;margin-top:10px}
+.s1-swipe::after{content:'↑';display:block;animation:bounceUp .8s ease-in-out infinite}
+@keyframes bounceUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+/* Story 2: Düğün */
+.s2{background:linear-gradient(160deg,#080614,#140E28,#0C0820)}
+.s2-decor{position:absolute;inset:0;overflow:hidden}
+.s2-decor::before{content:'';position:absolute;top:-100px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(155,114,207,.15) 0%,transparent 70%)}
+.s2-decor::after{content:'';position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(201,150,62,.1) 0%,transparent 70%)}
+.s2-content{position:absolute;inset:0;padding:40px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.s2-ornament{font-size:32px;margin-bottom:16px;opacity:.7}
+.s2-pre{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:#9B72CF;text-transform:uppercase;margin-bottom:12px}
+.s2-title{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;font-style:italic;line-height:1.05;margin-bottom:6px}
+.s2-amp{color:#E8C87A;font-size:56px;line-height:1;display:block}
+.s2-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,150,62,.5),transparent);margin:16px auto}
+.s2-detail{font-size:12px;color:rgba(245,239,230,.5);line-height:1.8;margin-bottom:20px}
+.s2-logo-bottom{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:rgba(201,150,62,.6);margin-top:auto}
+
+/* Story 3: Fiyat Duyurusu */
+.s3{background:linear-gradient(180deg,#0A0605,#1A0E08,#0D0805)}
+.s3-content{position:absolute;inset:0;padding:36px 28px;display:flex;flex-direction:column}
+.s3-header{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:#C9963E;text-transform:uppercase;margin-bottom:20px;text-align:center}
+.s3-offer{
+  background:rgba(201,150,62,.08);border:1px solid rgba(201,150,62,.2);
+  border-radius:16px;padding:24px;margin-bottom:16px;text-align:center;flex:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.s3-tur-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:#4BA8C5;text-transform:uppercase;margin-bottom:8px}
+.s3-price{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:300;color:#E8C87A;line-height:1}
+.s3-price-unit{font-size:12px;color:rgba(245,239,230,.4)}
+.s3-includes{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.s3-inc-item{font-size:12px;color:rgba(245,239,230,.6);display:flex;align-items:center;gap:8px}
+.s3-inc-item::before{content:'✦';color:#C9963E;font-size:9px}
+.s3-footer{margin-top:auto}
+.s3-cta{
+  background:#C9963E;color:#05111F;padding:14px;border-radius:10px;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;font-weight:600;
+  text-align:center;display:block;
+}
+
+/* Story 4: Müşteri Yorumu */
+.s4{background:linear-gradient(160deg,#020A14,#051525,#030D1C)}
+.s4-content{position:absolute;inset:0;padding:40px 28px;display:flex;flex-direction:column;justify-content:center}
+.s4-quote-mark{font-family:'Cormorant Garamond',serif;font-size:120px;line-height:.8;color:rgba(201,150,62,.15);margin-bottom:-20px}
+.s4-quote{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;line-height:1.5;color:#F5EFE6;margin-bottom:24px}
+.s4-stars{color:#C9963E;font-size:16px;letter-spacing:4px;margin-bottom:12px}
+.s4-author{font-size:12px;color:rgba(245,239,230,.5);display:flex;align-items:center;gap:8px}
+.s4-author::before{content:'';width:24px;height:1px;background:rgba(201,150,62,.4)}
+.s4-bottom{margin-top:32px;padding-top:20px;border-top:1px solid rgba(201,150,62,.1);text-align:center}
+.s4-logo{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:#C9963E}
+
+/* Story 5: Rezervasyon Hatırlatma */
+.s5{background:linear-gradient(135deg,#020A14,#0A1E2F,#041525)}
+.s5-content{position:absolute;inset:0;padding:40px 28px;display:flex;flex-direction:column}
+.s5-bg-text{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;font-size:180px;font-weight:300;font-style:italic;
+  color:rgba(201,150,62,.04);white-space:nowrap;pointer-events:none;
+}
+.s5-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:#4BA8C5;text-transform:uppercase;margin-bottom:auto;padding-top:4px}
+.s5-center{text-align:center;margin:auto 0}
+.s5-emoji{font-size:48px;margin-bottom:16px;display:block}
+.s5-title{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;line-height:1.1;margin-bottom:12px}
+.s5-title em{font-style:italic;color:#E8C87A}
+.s5-text{font-size:13px;color:rgba(245,239,230,.55);line-height:1.7;margin-bottom:20px}
+.s5-spots{
+  display:inline-block;background:rgba(224,85,85,.1);border:1px solid rgba(224,85,85,.3);
+  padding:8px 16px;border-radius:6px;font-size:12px;color:#E08888;
+}
+.s5-bottom{margin-top:auto}
+.s5-cta{
+  background:linear-gradient(135deg,rgba(201,150,62,.15),rgba(201,150,62,.05));
+  border:1px solid rgba(201,150,62,.4);color:#C9963E;
+  padding:14px;border-radius:10px;font-family:'Cinzel',serif;font-size:11px;
+  letter-spacing:2px;text-align:center;display:block;margin-bottom:10px;
+}
+.s5-phone{text-align:center;font-size:12px;color:rgba(245,239,230,.3)}
+
+/* Instructions */
+.instructions{
+  max-width:700px;margin:60px auto 0;
+  background:rgba(255,255,255,.025);border:1px solid rgba(201,150,62,.15);
+  border-radius:16px;padding:28px;
+}
+.inst-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:#C9963E;margin-bottom:16px;text-transform:uppercase}
+.inst-item{display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px;color:rgba(245,239,230,.6);line-height:1.5}
+.inst-item:last-child{border:none}
+.inst-num{font-family:'Cinzel',serif;color:#C9963E;font-size:14px;flex-shrink:0;width:20px}
+</style>
+</head>
+<body>
+
+<div class="page-title">Sosyal Medya</div>
+<h1 class="page-h1">Instagram <em>Story Şablonları</em></h1>
+<p class="page-note">Ekran görüntüsü alın veya sağ tık → Farklı kaydet ile indirin.<br>Her şablon 1080×1920 oran için optimize edilmiştir (9:16).</p>
+
+<div class="stories-grid">
+
+  <!-- Story 1: Gezi Turu Duyurusu -->
+  <div class="story-wrap">
+    <div class="story s1">
+      <div class="s1-stars" id="s1stars"></div>
+      <div class="s1-content">
+        <div class="s1-top">
+          <div class="story-logo">RAKSI DERYA</div>
+          <div style="font-size:11px;color:rgba(245,239,230,.3)">🌊</div>
+        </div>
+        <div class="s1-center">
+          <div class="s1-date-badge">Bu Hafta Sonu</div>
+          <div class="s1-big">Boğaz'da<br><em>Yolculuk</em></div>
+          <div class="s1-sub">Sabah · Akşam · Gece Turu</div>
+        </div>
+        <div class="s1-bottom">
+          <div class="s1-cta">✦ Rezervasyon Yap</div>
+          <div class="s1-swipe">Kaydır</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-label">Gezi Turu Duyurusu</div>
+  </div>
+
+  <!-- Story 2: Düğün -->
+  <div class="story-wrap">
+    <div class="story s2">
+      <div class="s2-decor"></div>
+      <div class="s2-content">
+        <div class="s2-ornament">✦ ⚓ ✦</div>
+        <div class="s2-pre">Raks-ı Derya ile</div>
+        <div class="s2-title">Düğününüz</div>
+        <div class="s2-title"><span class="s2-amp">&</span></div>
+        <div class="s2-title">Boğaz</div>
+        <div class="s2-divider"></div>
+        <div class="s2-detail">
+          Hayatınızın en özel gününü<br>
+          İstanbul Boğazı'nın<br>
+          altın saatinde kutlayın.
+        </div>
+        <div style="font-size:11px;color:rgba(201,150,62,.6);text-align:center;margin-bottom:16px">📞 Bilgi için mesaj atın</div>
+        <div class="s2-logo-bottom">RAKSI DERYA GEZİ TEKNESİ</div>
+      </div>
+    </div>
+    <div class="story-label">Düğün & Nişan</div>
+  </div>
+
+  <!-- Story 3: Fiyat -->
+  <div class="story-wrap">
+    <div class="story s3">
+      <div class="s3-content">
+        <div class="s3-header">✦ Organizasyon Hizmetleri ✦</div>
+        <div class="s3-offer">
+          <div class="s3-tur-name">Gezi Turu</div>
+          <div class="s3-price" style="font-size:30px">Kişiye Özel</div>
+          <div class="s3-price-unit">Fiyat için bize yazın</div>
+          <div class="s3-includes">
+            <div class="s3-inc-item">Hoş geldiniz ikramı</div>
+            <div class="s3-inc-item">Rehber eşliğinde</div>
+            <div class="s3-inc-item">Gün batımı rotası</div>
+            <div class="s3-inc-item">Fotoğraf molası</div>
+          </div>
+        </div>
+        <div class="s3-footer">
+          <div class="s3-cta">✦ Hemen Rezervasyon Yap</div>
+          <div style="text-align:center;font-size:11px;color:rgba(245,239,230,.35);margin-top:10px">raksiderya.com · 0532 000 00 00</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-label">Fiyat & Kampanya</div>
+  </div>
+
+  <!-- Story 4: Yorum -->
+  <div class="story-wrap">
+    <div class="story s4">
+      <div class="s4-content">
+        <div class="s4-quote-mark">"</div>
+        <div class="s4-quote">Düğünümüzü Raks-ı Derya'da yaptık ve rüya gibiydi. Boğaz'ın gün batımında evlenmek hayatımızın en güzel anıydı.</div>
+        <div class="s4-stars">★★★★★</div>
+        <div class="s4-author">Zeynep & Mehmet</div>
+        <div class="s4-bottom">
+          <div class="s4-logo">RAKSI DERYA</div>
+          <div style="font-size:10px;letter-spacing:2px;color:rgba(245,239,230,.3);margin-top:4px">İSTANBUL BOĞAZI</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-label">Müşteri Yorumu</div>
+  </div>
+
+  <!-- Story 5: Yer Kaldı -->
+  <div class="story-wrap">
+    <div class="story s5">
+      <div class="s5-bg-text">Boğaz</div>
+      <div class="s5-content">
+        <div class="s5-label">Raks-ı Derya · Bu Hafta Sonu</div>
+        <div class="s5-center">
+          <span class="s5-emoji">⏰</span>
+          <div class="s5-title">Son <em>Birkaç Yer</em></div>
+          <div class="s5-text">Bu hafta sonu Boğaz gezi turumuza katılmak için sınırlı kontenjan kaldı!</div>
+          <div class="s5-spots">🔴 Sadece 5 Yer Kaldı</div>
+        </div>
+        <div class="s5-bottom">
+          <div class="s5-cta">✦ Hemen Ayırt</div>
+          <div class="s5-phone">📞 0532 000 00 00</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-label">Aciliyet / Dolmak Üzere</div>
+  </div>
+
+</div>
+
+<!-- Kullanım talimatları -->
+<div class="instructions">
+  <div class="inst-title">📱 Nasıl Kullanılır</div>
+  <div class="inst-item"><span class="inst-num">1</span>İstediğiniz story şablonunun üzerine sağ tıklayın veya mobilde basılı tutun.</div>
+  <div class="inst-item"><span class="inst-num">2</span>"Görüntüyü farklı kaydet" ile bilgisayarınıza indirin.</div>
+  <div class="inst-item"><span class="inst-num">3</span>Instagram'da "Yeni Story" → indirilen görseli seçin.</div>
+  <div class="inst-item"><span class="inst-num">4</span>Üzerine kendi tarihinizi, fiyatlarınızı veya yorumlarınızı ekleyebilirsiniz.</div>
+  <div class="inst-item"><span class="inst-num">5</span>Fiyat veya tarih değiştirmek istiyorsanız söyleyin, anında güncellerim!</div>
+</div>
+
+<script>
+// Yıldızlar Story 1 için
+const s1 = document.getElementById('s1stars');
+for(let i=0;i<30;i++){
+  const star=document.createElement('div');
+  const sz=Math.random()*1.5+.5;
+  star.style.cssText=`position:absolute;width:${sz}px;height:${sz}px;border-radius:50%;background:rgba(255,255,255,${.3+Math.random()*.6});left:${Math.random()*100}%;top:${Math.random()*60}%;animation:tw ${2+Math.random()*3}s ${Math.random()*4}s ease-in-out infinite`;
+  s1.appendChild(star);
+}
+const st=document.createElement('style');
+st.textContent='@keyframes tw{0%,100%{opacity:.7}50%{opacity:.1}}';
+document.head.appendChild(st);
+</script>
+</body>
+</html>
